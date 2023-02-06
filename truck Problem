@@ -1,0 +1,54 @@
+#include <stdio.h>
+
+int main()
+{
+    int boxTypesSize=4;
+    int truckSize=10;
+    int boxTypes[boxTypesSize][2];
+    for(int i=0;i<boxTypesSize;i++)
+    {
+        printf("enter");
+        scanf("%d",&boxTypes[i][0]);
+        scanf("%d",&boxTypes[i][1]);
+       
+    }
+        int c=0;
+        int a[2];
+        for(int i=0;i<boxTypesSize;i++)
+        {
+                for(int j=i+1;j<boxTypesSize;j++)
+                {
+                    if(boxTypes[i][1]<boxTypes[j][1])
+                    {
+                            a[0]=boxTypes[i][0];
+                            a[1]=boxTypes[i][1];
+                            boxTypes[i][0]= boxTypes[j][0];
+                            boxTypes[i][1]= boxTypes[j][1];
+                            boxTypes[j][0]=a[0];
+                            boxTypes[j][1]=a[1];              
+                    }
+                }
+        }
+        for(int i=0;i<boxTypesSize;i++)
+        {
+                if(truckSize==0)
+                {
+                        break;
+                }
+                if(boxTypes[i][0]<truckSize)
+                {
+                        c=c+(boxTypes[i][0]*boxTypes[i][1]);
+                        truckSize=truckSize-boxTypes[i][0];
+                       
+                }
+                else
+                {
+                        c=c+(truckSize*boxTypes[i][1]);
+                        truckSize=0;
+                       
+                }
+        }
+        printf("%d",c);
+
+
+}
